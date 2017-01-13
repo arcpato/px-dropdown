@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>px-dropdown Demo</title>
-  <link rel="stylesheet" type="text/css" href="css/px-dropdown-demo.css"/>
+  <link rel="import" href="css/px-dropdown-demo-styles.html" />
+  <style include="px-dropdown-demo-styles" is="custom-style"></style>
   <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
   <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
 
   <link rel="import" href="../px-theme/px-theme-styles.html">
   <style include="px-theme-styles" is="custom-style"></style>
 
-  <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
   <link rel="import" href="../px-tabs/px-tab-set.html" />
   <link rel="import" href="px-dropdown.html"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -27,11 +28,11 @@
   <!-- allow use of Polymer bindings in main document -->
   <template id="just-for-demo" is="dom-bind" >
 
-    <!-- discription -->
-    <div class="hero u-p++ text--shadow">
+    <!-- description -->
+    <div class="demo-layout--center demo-u-pb+++ text--shadow">
       <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-dropdown" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
   		<h1 class="delta">px-dropdown</h1>
-      <div class="description-text">
+      <div class="demo-text-width--max">
     		<p>
     			Dropdowns have two primary use cases. First, as a form control, drop-down lists are ideal for a user to choose from a preconfigured list of options – ideally, between 5 and 15. If there are fewer than 5 options, consider using a radio button. For very large lists of options, consider adding typeahead functionality in addition to, or instead of, a drop-down. The second primary use case for a drop-down list is as a filter or navigation item, where invoking an option from the drop-down menu results in an action of some kind.
     		</p>
@@ -43,9 +44,9 @@
   		</div>
   	</div>
 
-    <!-- mega demo -->
+    <!-- demo container -->
     <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
-      <div class="tabContainer u-pt++ u-pl++">
+      <div class="demo-background--interactive u-pt++ u-pl++">
         <px-tab-set selected="{{selected}}" bare no-bottom-border>
           <template is="dom-repeat" items="{{optionsArray}}">
             <px-tab>Option {{indexPlusOne(index)}}</px-tab>
@@ -55,38 +56,38 @@
       <px-tab-pages selected="{{selected}}">
         <template is="dom-repeat" items="{{optionsArray}}">
           <section class="tab-page">
-            <div class="mega-demo flex u-ph++ u-pb++">
+            <div class="demo-background--interactive flex u-ph++ u-pb++">
               <!-- Properties -->
-              <div class="properties u-ph+ u-pb+ u-mt+">
+              <div class="demo-properties-container u-ph+ u-pb+ u-mt+">
                 <p class="epsilon">Properties</p>
-                  <div class="flex u-mb-">
-                    <input id="disabled{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.disabled::change}}">
-                    <label for$="disabled{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                    <div class="u-ml-">Disabled</div>
+                  <div class="flex flex--justify u-mb-">
+                    <div>Disabled</div>
+                      <input id="disabled{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.disabled::change}}">
+                      <label for$="disabled{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
                   </div>
-                  <div class="flex u-mb-">
+                  <div class="flex flex--justify u-mb-">
+                    <div>Hide Chevron</div>
                     <input id="hideChevron{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.hideChevron::change}}">
                     <label for$="hideChevron{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                    <div class="u-ml-">Hide Chevron</div>
                   </div>
-                  <div class="flex u-mb-">
+                  <div class="flex flex--justify u-mb-">
+                    <div>Checkbox Mode</div>
                     <input id="checkboxMode{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.checkboxMode::change}}">
                     <label for$="checkboxMode{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                    <div class="u-ml-">Checkbox Mode</div>
                   </div>
-                  <div class="flex u-mb-">
+                  <div class="flex flex--justify u-mb-">
+                    <div>Prevent Close On </br>Outside Click</div>
                     <input id="preventCloseOnOutsideClick{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.preventCloseOnOutsideClick::change}}">
                     <label for$="preventCloseOnOutsideClick{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                    <div class="u-ml-">Prevent Close On Outside Click</div>
                   </div>
                   <div class="u-mb-">Display Value: <input class="text-input" type="text" placeholder="{{item.displayValue}}" value="{{item.displayValue::input}}" /></div>
                   <div class="u-mb-">Selected Key: <input class="text-input" type="text" placeholder="{{item.selectedKey}}" value="{{item.selectedKey::input}}" /></div>
                 </div>
 
-              <div class="demoContainer u-mt+">
+              <div class="demo-component-code-container u-mt+">
                 <!-- demo -->
                 <div class="flex flex--col">
-                  <div class="demo u-p+">
+                  <div class="demo-component-container u-p+">
 
                     <div style="width: 150px;">
                       <px-dropdown
@@ -110,30 +111,26 @@
                 </div>
               </div>
             </div>
-            <div class="apiContainer">
-              <div class="flex flex--col api u-mt++" >
+            <div class="demo-background--api">
+              <div class="flex flex--col demo-layout--center u-mt++" >
                 <div class="flex">
                   <div class="flex__item">
-                    <div class="flex flex--col childrenAssociated">
-                      <div class="componentHeader">Children Component</div>
-                      <div class="componentList">
-                        <ul>
-                          <li><a href="px-dropdown-content-demo.html">px-dropdown-content</a></li>
+                    <div class="flex flex--col demo-associated">
+                      <div class="demo-associated-header">Children Component</div>
+                        <ul class="list-bare">
+                          <li><a class="actionable" href="px-dropdown-content-demo.html">px-dropdown-content</a></li>
                         </ul>
-                      </div>
                     </div>
                   </div>
                   <div class="flex__item">
                     <div class="flex flex--col">
-                      <div class="componentHeader">Associated Component</div>
-                      <div class="componentList">
-                        <ul>
-                          <li><a href="http://predixdev.github.io/px-data-table/px-data-table/index.html">px-data-table</a></li>
-                          <li><a href="https://predixdev.github.io/px-datetime-range-field/px-datetime-range-field/index.html">px-datetime-range-field</a></li>
-                          <li><a href="https://predixdev.github.io/px-validation/px-validation/index.html">px-validation</a></li>
-                          <li><a href="https://predixdev.github.io/px-forms-design/px-forms-design/index.html">px-forms-design</a></li>
+                      <div class="demo-associated-header">Associated Component</div>
+                        <ul class="list-bare">
+                          <li><a class="actionable" href="http://predixdev.github.io/px-data-table/px-data-table/index.html">px-data-table</a></li>
+                          <li><a class="actionable" href="https://predixdev.github.io/px-datetime-range-field/px-datetime-range-field/index.html">px-datetime-range-field</a></li>
+                          <li><a class="actionable" href="https://predixdev.github.io/px-validation/px-validation/index.html">px-validation</a></li>
+                          <li><a class="actionable" href="https://predixdev.github.io/px-forms-design/px-forms-design/index.html">px-forms-design</a></li>
                         </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -146,20 +143,20 @@
         </template>
       </px-tab-pages>
     </div>
-    <footer class="footer flex flex--center">
-      <div class="footer__container u-pv++">
+    <footer class="demo-background--footer flex flex--center">
+      <div class="demo-footer__container u-pv++">
         <div>
           <a href="https://ge.com/digital" >
-            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="demo-footer__img">
           </a>
         </div>
-        <div class="footer__list">
+        <div class="demo-footer__list">
           <ul class="list-inline list-inline--delimited">
             <li>
-              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+              <a href="http://predix.io/legal" class="demo-footer__list--lnk">Legal</a>
             </li>
             <li>
-              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+              <a href="mailto:info@predix.io" class="demo-footer__list--lnk">Contact Us</a>
             </li>
             <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
           </ul>
@@ -175,7 +172,7 @@ window.addEventListener('WebComponentsReady', function() {
           {"key":"2", "val": "Android"},
           {"key":"3", "val": "Blackberry"},
           {"key":"4", "val": "Windows Phone"},
-		  {"key":"5", "val": "Flip Phone", "disabled": true}
+		      {"key":"5", "val": "Flip Phone", "disabled": true}
         ],
       optionsArray = [
         {
